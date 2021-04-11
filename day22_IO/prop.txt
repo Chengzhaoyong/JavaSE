@@ -1,0 +1,4 @@
+#Sun May 12 15:08:01 CST 2019
+lisan=40
+lish=50
+lisi=100

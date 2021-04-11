@@ -1,0 +1,12 @@
+class HashSet implements Set{
+      private transient HashMap<E,Object> map;
+     private static final Object PRESENT = new Object();
+     
+     public HashSet() {
+        map = new HashMap<>();  //HashSet是用HashMap做的
+    }
+      public boolean add(E e) {
+        return map.put(e, PRESENT)==null;
+    }
+   
+}

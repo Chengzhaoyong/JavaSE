@@ -1,0 +1,498 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>广财首页</title>
+	<link rel="stylesheet" href="css/index.css">
+	<script>	
+	  window.onload=function(){
+
+       //导航条的下拉列表  一个li对应响应的ul下拉列表
+		var li=document.getElementsByName("lii");
+		var ul=document.getElementsByName("ulll");
+		for(let i=0;i<li.length;i++){
+     
+			li[i].onmouseover=ul[i].onmouseover=function(){
+            ul[i].style.display='block';
+	
+             
+			}
+	      li[i].onmouseout= ul[i].onmouseout=function(){
+	
+				ul[i].style.display='none';};
+		 
+	
+	
+	 }
+	
+		//  左右按键
+		 var wrap = document.querySelector(".wrap");
+        var next = document.querySelector(".arrow_right");
+        var prev = document.querySelector(".arrow_left");
+        next.onclick = function () {
+            next_pic();
+        }
+        prev.onclick = function () {
+            prev_pic();
+        }
+        function next_pic () {
+		  var newLeft;
+		  index++;
+	
+		  if(index>5){
+                index = 0;
+            }
+		  if(wrap.offsetLeft==-5500){
+			  newLeft=0;
+		  }else{
+			   newLeft = wrap.offsetLeft-1100;
+		  }
+            
+            wrap.style.left = newLeft + "px";
+			 showCurrentDot();
+        }
+        function prev_pic () {
+			var newLeft;
+			index--;
+			if(index<0){
+				index=5;
+			}
+		 
+		    if(wrap.offsetLeft==0){
+				newLeft=-5500;
+			}else{
+				 newLeft = wrap.offsetLeft+1100;
+			}
+            
+            wrap.style.left = newLeft + "px";
+			showCurrentDot();
+        }
+	
+		//自动轮播图片
+		var timer = null;
+        function autoPlay () {
+            timer = setInterval(function () {
+                next_pic();
+            },3000);
+        }
+        autoPlay();
+
+		//鼠标移进图片，停止轮播，鼠标移出图片，开始轮播
+		var container = document.querySelector(".big-pic");
+        container.onmouseenter = function () {
+            clearInterval(timer);
+        }
+        container.onmouseleave = function () {
+            autoPlay();    
+        }
+		//图片圆点按钮
+      
+        var index = 0;
+        var span = document.querySelector(".buttons").getElementsByTagName("span");
+		
+        function showCurrentDot () {
+            for(let i = 0, len = span.length; i < len; i++){
+                span[i].className = "";
+		
+            }
+            span[index].className = "active";
+        }
+
+		for(let i=0;i<span.length;i++){
+			span[i].onclick=function(){
+
+				wrap.style.left = (-1100*i) + "px";
+				index=i;
+				showCurrentDot();
+			}
+		}
+		
+
+		}
+
+
+	  
+	</script>
+</head>
+<body>
+   <div class="wrapper">
+   	<div class="top">
+   		<div class="top-nav">
+   			<div class="top-nav-wrapper">
+   				<div class="top-nav-left">
+   					<ul>
+   					<li><a href="#" class="one">
+   							<span class="xs-pic"></span>
+   							<span class="wenzi">学生</span>
+   						</a></li>
+   						<li><a href="#" class="two">
+   						<span class="jzg-pic"></span>
+   							<span>教职工</span>
+   						</a></li>
+   						<li><a href="#" class="three">
+   					<span class="xy-pic"></span>
+   							<span>校友</span>
+   						</a></li>
+   						<li><a href="#" class="four">
+   				    <span class="ksjfk-pic"></span>
+   							<span>考生及访客</span>
+   						</a></li>
+   					</ul>
+   				</div>
+   				<div class="top-nav-right">
+   					<ul>
+   						<li><a href="#">佛山三水校区</a></li>
+   						<li><a href="#">图书馆</a></li>
+   						<li><a href="#">信息门户</a></li>
+   						<li><a href="#">电子邮箱</a></li>
+   						<li><a href="#">English</a></li>
+   						<li><a href="#">旧版主页</a></li>
+   					</ul>
+   				</div>
+   			</div>
+   		</div>
+   		<div class="top-content">
+   			<div class="top-content-logo">
+   				<div class="top-content-logo-left"></div>
+   			<div class="top-content-logo-right">
+   					<div class="search-btn"></div>
+   					<div class="search-box"></div>
+   				</div>
+   			<!-- </div -->
+   		</div>
+   		<div class="top-foot">
+   			<div class="top-foot-inner">
+   			<ul id="aaa">
+   				<li><a href="#" class="shouye">首页</a></li>
+				   <li id="li1" name="lii"><a href="#" class="shouye">学校概况</a>
+				   <ul class="li-ul" style="display: none;" id="ul1" name="ulll">
+					   <li><a href="#">广财简介</a></li>
+					   <li><a href="#">现任领导</a></li>
+					   <li><a href="#">校园风光</a></li>
+					   <li><a href="#">学校导图</a></li>
+					   <li><a href="#">校训校徽</a></li>
+				   </ul>
+				</li>
+				   <li name="lii" ><a href="#" class="shouye">组织机构</a>
+					<ul id="ul2" name="ulll" style="display:none;" class="li-ul">
+					<li><a href="#">教学机构</a></li>
+					<li><a href="#">党政机构</a></li>
+					<li><a href="#">群团机构</a></li>
+					<li><a href="#">科研机构</a></li>
+					<li><a href="#">教辅机构</a></li>
+					<li><a href="#">附属机构</a></li>
+					<li><a href="#">派出机构</a></li>
+				</ul>
+				</li>
+				   <li name="lii"><a href="#" class="shouye">教育教学</a>
+					<ul id="ul3" name="ulll" style="display:none;" class="li-ul">
+						<li><a href="#">本科生教育</a></li>
+						<li><a href="#">研究生教育</a></li>
+						<li><a href="#">继续教育</a></li>
+						<li><a href="#">网络教育</a></li>
+						<li><a href="#">国际教育</a></li>
+				
+					</ul>
+				</li>
+				   <li name="lii" ><a href="#"class="shouye">学科建设</a>
+					<ul id="ul4" name="ulll" style="display:none;" class="li-ul">
+						<li><a href="#">学科专业</a></li>
+						<li><a href="#">重点学科</a></li>
+					
+				
+					</ul>
+				</li>
+				   <li name="lii" ><a href="#"class="shouye">科学研究</a>
+					<ul id="ul5" name="ulll" style="display:none;" class="li-ul">
+						<li><a href="#">科研机构</a></li>
+						<li><a href="#">科研机构</a></li>
+					</ul>
+				</li>
+				   <li name="lii" ><a href="#" class="shouye">招生就业</a>
+					<ul id="ul6" name="ulll" style="display:none;" class="li-ul">
+						<li><a href="#">本科生招生</a></li>
+						<li><a href="#">研究生招生</a></li>
+						<li><a href="#">留学生招生</a></li>
+						<li><a href="#">继续教育招生</a></li>
+						<li><a href="#">就业服务</a></li>
+				
+					</ul>
+				</li>
+				   <li name="lii"><a href="#" class="shouye"  >交流合作</a>
+					<ul id="ul7" name="ulll" style="display:none;" class="li-ul">
+						<li><a href="#">国际交流</a></li>
+						<li><a href="#">校友会</a></li>
+						<li><a href="#">教育发展基金</a></li>
+				
+					</ul>
+				</li>
+				   <li name="lii"><a href="#"   class="shouye" >人才招聘</a>
+					<ul id="ul8" name="ulll" style="display:none;" class="li-ul">
+						<li><a href="#">高层次人才</a></li>
+						<li><a href="#">英士招聘</a></li>
+						<li><a href="#">博士招聘</a></li>
+				
+					</ul>
+				</li>
+				   <li name="lii"><a href="#" class="shouye">公共服务</a>
+					<ul id="ul9" name="ulll" style="display:none;" class="li-ul">
+						<li><a href="#">信息服务</a></li>
+						<li><a href="#">后勤服务</a></li>
+					
+				
+					</ul>
+				</li>
+   			</ul>
+   		</div>
+		</div>
+   		  	</div>
+   		  	</div>
+   		  	<div class="big-pic">
+					 <div class="wrap">
+						 <img src="img/lunbo1.jpg" alt="">
+						 <img src="img/lunbo2.jpg" alt="">
+						 <img src="img/lunbo3.jpg" alt="">
+						 <img src="img/lunbo4.jpg" alt="">
+						 <img src="img/lunbo5.jpg" alt="">
+						 <img src="img/lunbo6.jpg" alt="">
+					 </div>
+					 <div class="buttons">
+						<span class="active"></span>
+						<span></span>
+						<span></span>
+						<span></span>
+						<span></span>
+						<span></span>
+					</div>
+					<a class="arrow arrow_left">&lt;</a>
+					<a class="arrow arrow_right">&gt;</a>
+				 </div>
+
+
+
+
+
+
+   		  	<div class="news">
+   		  		<div class="news-inner">
+   		  		<div class="news-inner-left">
+         
+   		 <div class ="top">
+   		 	<div class="tt">
+   		 		<h3 class="tt-left">学校新闻</h3>
+   		 		<div class="tt-right"><a href="#">进入新闻网>></a></div>
+   		 	</div>
+   		 	<div class="con">
+   		 		<div class="small-pic"></div>
+   		 
+   		 	<div class="small-pic-right">
+   		 		<div class="news1">
+   		 		<div class="news1-inner">2020级本科学生军训成果汇报暨总结表彰大会举行</div>
+   		 		</div>
+   		 		<div class="news2">9月30日上午， 2020级本科学生军训成果汇报暨总结表彰大会分别在佛山三水校区和广州校区同时举行。校长于海峰，校党委副书记刘祖华、罗贤甲，副校长张力、陈国栋、邹新月，助训部队军训团团长陈锦权、五营营长王微微...</div>
+   		 	</div>
+   		 </div>
+   		</div>
+
+   		  <div class ="foot">
+   		  	<div class="con">
+   		  		<ul>
+   		  			<li class="news1">
+   		  				<span class="left">佛山三水校区举办“庆国庆 迎中秋”系列活动</span>
+   		  				<span class="right">2020-10-04</span>
+   		  			</li>
+   		  			<li class="news2"><span class="left">我校举行中秋国庆游园活动共庆双节</span>
+   		  				<span class="right">2020-10-03</span></li>
+   		  		<li class="news3"><span class="left">校领导国庆中秋双节到佛山三水校区看望慰问留校学生</span>
+   		  			       <span class="right">2020-10-02</span>
+   		  			</li>
+   		  			<li class="news4"><span class="left">校领导带队开展校园安全检查</span>
+   		  				<span class="right">2020-09-30</span></li>
+   		  			<li class="news5"><span class="left">学校召开课程思政建设推进会</span>
+   		  				<span class="right">2020-09-30</span></li>
+   		  			<li class="news6"><span class="left">我校获13项2020年国家社科基金项目立项</span>
+   		  				<span class="right">2020-09-29</span></li>
+   		  			<li class="news7"><span class="left">学校召开2020-2021学年第一学期研究生工作会议</span>
+   		  				<span class="right">2020-09-28</span></li>
+   		  		</ul>
+   		  	</div>
+   		  </div>
+   		  			
+   		  		</div>
+   		  	<div class="news-inner-right">
+   		  		<div class="post1">
+   		  			<div class="top">
+   		  				<h3>通知公告</h3>
+   		  				<span>更多>></span>
+   		  			</div>
+   		  			<div class="footer">
+   		  				<div class="footer-inner">
+   		  					<div class="left">
+   		  						<div class="year">09月</div>
+   		  						<div class="day">11</div>
+   		  					</div>
+   		  					<div class="right"><div class="wenzi">广东财经大学2021年硕士研究生招生简章</div>
+   		  					</div>
+   		  				</div>
+   		  			</div>
+   		  		</div>
+   		  		<div class="post2">
+   		  		<div class="post2-inner">
+   		  			<ul>
+   		  				<li><span class="left">广东财经大学旅游管理专业硕士（MTA）2021</span>
+   		  					<span class="right">2020-09-27</span></li>
+   		  				<li><span class="left">广东财经大学2021年MBA招生简章</span>
+   		  					<span class="right">2020-09-16</span></li>
+   		  				<li><span class="left">广东财经大学2021年公共管理专业硕士</span>
+   		  					<span class="right">2020-09-14</span></li>
+   		  				<li><span class="left">广东财经大学面向海内外公开招聘学科领军人</span>
+   		  					<span class="right">2020-08-15</span></li>
+   		  			</ul>
+   		  		</div>
+   		  		</div>
+   		  		<div class="post3">
+   		  			<div class="tt">
+   		  			<h3>媒体广财</h3>
+   		  			<span>更多>></span>
+   		  			</div>
+   		  			<div class="con">
+   		  				<div class="con-inner">
+   		  			  <div class="left">
+   		  			   <div class="year">10月</div>
+   		  			   <div class="day">05</div>
+   		  			  </div>
+   		  			  <div class="right">佛山日报：猜灯谜看露天电影，广财大佛山三水校区组织留校学生欢...</div>
+   		  				</div>
+   		  			</div>
+   		  		</div>
+   		  		<div class="post4"><div class="inner">
+   		  			<ul>
+   		  				<li><span class="left">
+							学习强国：广东财经大学承办2020年广东省外
+   		  				</span>
+   		  				<span class="right">2020-09-28</span></li>
+   		  				<li><span class="left">
+							学习强国：广东财经大学举行《习近平谈治国
+   		  				</span >
+   		  					<span class="right">2020-09-28</span></li>
+   		  				<li><span class="left">
+							广州日报：现实版“花木兰”！快来看广州202
+   		  				</span>
+   		  					<span class="right">2020-09-25</span></li>
+   		  			</ul>
+   		  		</div>
+   		  	</div>
+   		    </div>
+   		  		</div>
+   		  	</div>
+   		 
+   		  		  <div class="message">
+   		  		  	<div class="inner">
+   		  		  		<ul>
+   		  		  			<li class="i1">
+   		  		  		<div class="i1-box">
+   		  		  			<a href="#" class="i1-box-1"><span class="icon1"></span>
+   		  		  				<span class="	wenzi-1">信息化建设</span></a>
+   		  		  			<a href="#" class="i1-box-2"><span class="icon1"></span>
+   		  		  				<span class="wenzi-1">blackboard平台</span></a>
+   		  		  			<a href="#" class="i1-box-3"><span class="icon1"></span>
+   		  		  				<span class="wenzi-1">VPN访问</span></a>
+   		  		  		</div>
+   		  		  			</li>
+   		  		  			<li class="i2">
+   		  		  			<div class="i2-box"><a href="#" class="i2-box-1">
+   		  		  					<span class="big"></span>
+   		  		  					<span class="wenzi-1">信息公开</span>
+   		  		  				</a>
+   		  		  			<a href="#" class="i2-box-2"><span class="icon1"></span>
+   		  		  				<span class="wenzi-1">招标信息</span></a>
+   		  		  			
+   		  		  				</div>
+   		  		  			</li>
+   		  		  			<li class="i3">
+   		  		  				<div class="i3-box">
+   		  		  				<a href="#" class="i3-box-1">
+   		  		  					<span class="icon1"></span>
+   		  		  					<span class="wenzi-1">学校投稿</span>
+   		  		  				</a>
+   		  		  				<a href="#" class="i3-box-2">
+   		  		  					<span class="icon1"></span><span class="wenzi-1">电子校报</span>
+   		  		  				</a>
+   		  		  				<a href="#" class="i3-bpx-3">
+   		  		  					<span class="icon1"></span><span class="wenzi-1">服务指南</span>
+   		  		  				</a>
+   		  		  				</div>
+   		  		  			</li>
+   		  		  			<li class="i4">
+   		  		  				<div class="i4-box">
+   		  		  					<a href="#" class="i4-box-1">
+   		  		  					<span class="icon1">
+   		  		  						
+   		  		  					</span>
+   		  		  						<span class="wenzi-1">校领导接待日</span>
+   		  		  					</a><a href="#" class="i4-box-2">
+   		  		  						<span class="big"></span>
+   		  		  						<span class="wenzi-1">图书馆</span>
+   		  		  					</a>
+   		  		  				</div>
+   		  		  			</li>
+   		  		  		</ul>
+   		  		  	</div>
+   		  		  </div>
+   		  		  <div class="big-website">
+   		  			<div class="website">
+   		  				<div class="inner">
+   		  					<div class="post">
+   		  						<div class="tt">
+   		  							<h3>专题网站</h3>
+   		  						</div>
+   		  						<div class="con">
+   		  							<ul>
+   		  								<li><a href="#" class="i1">新冠肺炎防控工作指引</a></li>
+   		  								<li><a href="#" class="i2">主题教育</a></li>
+   		  								<li><a href="#" class="i3">广财大第一次党代会专题网</a></li>
+   		  								<li><a href="#" class="i4">“南岭学者”招聘专栏</a></li>
+   		  								<li><a href="#" class="i5">“两学一做”专题网</a></li>
+   		  							</ul>
+   		  						</div>
+   		  					</div>
+   		  				</div>
+   		  			</div>
+   		  	
+   		  <div class="foot">
+   		  	<div class="big-top">
+   		  	<div class="top">
+   		  		<div class="top-left">
+   		  			<p>导航链接: 教育部 | 教育厅 | 广东省人民政府 | 广州市人民政府</p>
+   		  			<p>广东省广州市海珠区仑头路21号 510320(广州校区)</p>
+   		  			<p>广东省佛山市三水区云东海旅游经济区 528100(三水校区)</p>
+   		  			<p>© 2017 GDUFE 粤ICP备05008846号 总机：(020)84096114</p>
+   		  		</div>
+   		  		<div class="top-right">
+   		  			<ul>
+   		  				<li>
+   		  					<div class="wb-pic"></div>
+   		  					<div class="wenzi">学校微博</div>
+   		  				</li>
+   		  				<li><div class="wx-pic"></div>
+   		  					<div class="wenzi">学校微信</div></li>
+   		  			</ul>
+   		  		</div>
+   		  	</div>
+   		  </div>
+   		  	<div class="footer">
+   		  		<div class="blue-pic"></div>
+   		  	</div>
+   		  </div>
+
+
+
+   </div>
+  
+
+
+
+</body>
+  
+
+</html>

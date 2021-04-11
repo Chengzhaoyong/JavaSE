@@ -1,0 +1,76 @@
+package cn.itcast_04;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+/*
+ *  键盘录入数据；
+ *  通过字符缓冲流包装标准输入流实现
+ *      
+ */
+public class SystemInDemo {
+		public static void main(String[] args) throws IOException {
+			BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+			
+			System.out.println("请输入一个字符串：");
+			String s=br.readLine();
+			System.out.println("你输入的字符串是"+s);
+			System.out.println("请输入一个整数：");
+			String s1=br.readLine();
+			int i=Integer.parseInt(s1);
+			System.out.println("你输入的整数是："+i);
+		}
+}
+package cn.itcast_04;
+
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+
+public class SystemOutDemo {
+
+	public static void main(String[] args) throws IOException{
+		BufferedWriter bw=new BufferedWriter(new OutputStreamWriter(System.out));
+		
+		bw.write("hello");
+		bw.write("world");
+		bw.write("java");
+		bw.flush();
+	}
+}
+package cn.itcast_06;
+
+import java.io.BufferedOutputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.SequenceInputStream;
+
+/*
+ *    合并流：
+ *    现在想要：
+ *       a.txt+b.txt-----c.txt
+ */
+public class SequenceInputStreamDemo {
+		public static void main(String[] args) throws IOException {
+			//SequenceInputStream(InputStream s1,InputStream s2)
+			//需求：把SystemIntDemo和SystemOutDemo复制在copy.txt中
+			FileInputStream s1=new FileInputStream("SystemInDemo.java");
+			
+			FileInputStream s2=new FileInputStream("SystemOutDemo.java");
+			SequenceInputStream sis=new SequenceInputStream(s1,s2);
+			BufferedOutputStream bos=new BufferedOutputStream(new FileOutputStream("copy.txt"));
+			
+			byte[] bys=new byte[1024];
+			int len=0;
+			while((len=sis.read(bys))!=-1) {
+				bos.write(bys,0,len);
+			}
+			sis.close();
+			bos.close();
+			
+		}
+}
